@@ -1,3 +1,7 @@
+last_train
+test
+*.o
+
 # Prerequisites
 *.d
 
