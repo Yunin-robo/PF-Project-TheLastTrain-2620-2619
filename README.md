@@ -62,8 +62,9 @@ Always run from the project root, because the program uses relative paths (`data
 | `unlock CODE` | Unlock the cabinet (in F5-R1) |
 | `board` | Prepare and board the train (in F5-R2) |
 | `map`, `status`, `objectives` | Display views (no cost) |
+| `connections` | To check the connections |
 | `save` / `load` | Save or load `out/savegame.txt` |
-| `help` | List commands |
+| `building` | To load the whole building Map |
 | `quit` | End the mission (writes a defeat summary) |
 
 Invalid or rejected actions cost no Energy or Time.
