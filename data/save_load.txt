@@ -1,0 +1,7 @@
+1 2
+collect <
+save
+move 1 1
+load
+collect <
+quit

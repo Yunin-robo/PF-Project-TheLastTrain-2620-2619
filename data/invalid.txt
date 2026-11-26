@@ -1,0 +1,11 @@
+3 1
+move 3 2
+move 4 1
+move 9 9
+collect X
+use *
+unlock 427
+board
+foo
+move abc
+quit

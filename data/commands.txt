@@ -1,0 +1,16 @@
+1 2
+collect <
+collect <
+move 1 1
+move 3 1
+move 2 1
+move 3 1
+move 3 2
+inspect
+collect *
+move 3 3
+move 3 4
+use *
+collect (
+save
+quit

@@ -1,0 +1,7 @@
+4 4
+move 5 4
+move 2 4
+move 4 3
+move 4 2
+move 4 4
+quit
