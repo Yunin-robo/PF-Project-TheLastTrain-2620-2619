@@ -1,0 +1,17 @@
+RESULT: VICTORY
+Final Score: 520
+Remaining Energy: 61
+Remaining Time: 43
+
+OBJECTIVES CHECKLIST
+[X] Master Key
+[X] Clue 4
+[X] Clue 2
+[X] Clue 7
+[X] Cabinet
+[X] Train Key
+[X] Fuse
+[X] Lift Pass
+[X] Passenger
+[X] Cat
+[X] Train Prepared
