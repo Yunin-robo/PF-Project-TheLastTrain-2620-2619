@@ -370,7 +370,7 @@ while (running){
 
   //LOAD
   else if (command == "load"){
-    if (loadGameStateFromFile("src/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
+    if (loadGameStateFromFile("out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "[+] Game loaded successfully." << endl;
         success = true;}
