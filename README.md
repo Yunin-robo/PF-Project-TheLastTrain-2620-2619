@@ -85,17 +85,17 @@ Energy Pack +25 Energy, Emergency Toolkit +15 Energy, Observation Token +15 Time
 The simulation uses no randomness and no clock. Identical command input gives identical output.
 
 ```bash
-./last_train < data/test_commands.txt > out/run1.txt
-./last_train < data/test_commands.txt > out/run2.txt
+./last_train < data/commands.txt > out/run1.txt
+./last_train < data/commands.txt > out/run2.txt
 diff out/run1.txt out/run2.txt && echo "DETERMINISTIC"
 ```
 
 `diff` prints nothing and the message `DETERMINISTIC` appears when both runs are identical. The saved state can be compared the same way:
 
 ```bash
-./last_train < data/test_commands.txt
+./last_train < data/commands.txt
 cp out/savegame.txt out/save_a.txt
-./last_train < data/test_commands.txt
+./last_train < data/commands.txt
 diff out/save_a.txt out/savegame.txt && echo "SAVE IDENTICAL"
 ```
 
