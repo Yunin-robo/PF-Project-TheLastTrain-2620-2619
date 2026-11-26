@@ -1,5 +1,3 @@
-# PF-Project-TheLastTrain-2620-2619
-
 # The Last Train - Programming Fundamentals Project (Procedural / No Structs)
 
 CS-1002: Programming Fundamentals (AI & DS)
