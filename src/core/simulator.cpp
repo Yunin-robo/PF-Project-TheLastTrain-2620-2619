@@ -363,14 +363,14 @@ while (running){
 
   //SAVE
   else if (command == "save"){
-    if (saveGameStateToFile("out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
+    if (saveGameStateToFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "[+] Game saved successfully." << endl;}
     else {cout << "[!] Could not save the game." << endl;}}
 
   //LOAD
   else if (command == "load"){
-    if (loadGameStateFromFile("out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
+    if (loadGameStateFromFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "[+] Game loaded successfully." << endl;
         success = true;}
@@ -393,7 +393,7 @@ while (running){
   //Finish simulation
   if (!objectives[OBJ_MISSION_WON]){objectives[OBJ_MISSION_FAILED] = true;}
   
-  writeGameSummaryReport("out/game_summary.txt",score, energy, time,objectives,objectives[OBJ_MISSION_WON]);
+  writeGameSummaryReport("./out/game_summary.txt",score, energy, time,objectives,objectives[OBJ_MISSION_WON]);
   ifstream report("out/game_summary.txt");
   string reportLine;
   cout << endl;
