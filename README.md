@@ -2,8 +2,8 @@
 
 CS-1002 Programming Fundamentals (AI & DS), Semester Project
 
-**Author(s):** {Name1} ({RollNo1}), {Name2} ({RollNo2})
-**Release tag:** `v1.0.{RollNo}`
+**Author(s):** Fasih ur Rehman (26i-2620), Maryam Murtaza (26i-2619)
+**Release tag:** `v1.0.2620.2619`
 
 ## About
 
@@ -111,7 +111,7 @@ diff out/save_a.txt out/savegame.txt && echo "SAVE IDENTICAL"
 - Clue digits are discovered with `inspect` and are not collectable.
 - The Train Key is tracked as an objective flag, obtained by unlocking the cabinet.
 - Boarding requires the Train Key, the rescued passenger and the secured cat. *(Assumption: spec does not state this.)*
-- `MAX_TIME` is 50, as in `config.h` and `initial-state.txt`.
+- `MAX_TIME` is 100, as in `config.h` and `initial-state.txt`.
 - `building.txt` shows one Energy Pack in F1-R4, so `main` adds the second pack for new games.
 - `loadGameStateFromFile` validates all values and applies them only if the whole file is valid.
 - All file reads and writes check for failure, and bad user input is rejected without crashing.
