@@ -363,7 +363,7 @@ while (running){
 
   //SAVE
   else if (command == "save"){
-    if (saveGameStateToFile("src/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
+    if (saveGameStateToFile("out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "[+] Game saved successfully." << endl;}
     else {cout << "[!] Could not save the game." << endl;}}
