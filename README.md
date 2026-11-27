@@ -2,7 +2,7 @@
 
 CS-1002 Programming Fundamentals (AI & DS), Semester Project
 
-**Author(s):** Fasih ur Rehman (26i-2620), Maryam Murtaza (26i-2619)
+**Members:** Fasih ur Rehman (26i-2620), Maryam Murtaza (26i-2619)
 **Release tag:** `v1.0.2620.2619`
 
 ## About
