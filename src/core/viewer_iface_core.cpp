@@ -36,8 +36,8 @@ else { for (int i =0;i < entityCount;i++){
 void renderAsciiBuilding(int playerFloor, int playerRoom){
   for (int i=NUM_FLOORS;i>=1; i--){
     for (int j = 1; j<=ROOMS_PER_FLOOR; j++){
-      if (i == playerFloor && j== playerRoom){cout << "[ P ]";}
-      else {cout << "[ . ]";}}
+      if (i == playerFloor && j== playerRoom){cout << " 🙂";}
+      else {cout << "[.]";}}
     cout << " Floor " << i << endl;}}
 
 void renderObjectivesChecklist(const bool objectives[NUM_OBJECTIVES]){
@@ -47,8 +47,8 @@ void renderObjectivesChecklist(const bool objectives[NUM_OBJECTIVES]){
   cout << endl;
   printHeader("OBJECTIVES CHECKLIST");
   for (int i = 0; i< NUM_OBJECTIVES ;i++){
-    if (objectives[i] == true){cout << "[X] ";}
-    else { cout << "[ ] ";}
+    if (objectives[i] == true){cout << "✅ ";}
+    else { cout << "❌ ";}
     cout << objectiveNames[i]<< endl;}
   cout << endl;}
 
