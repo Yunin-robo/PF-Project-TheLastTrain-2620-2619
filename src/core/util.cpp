@@ -17,18 +17,14 @@ bool stringEquals( const char* p, const char* q){
   
 void trimWhitespace (char* str){
   if (str==nullptr){return;}
-  int start  = 0;
-  int end = 0;
-  while (str[end]!='\0'){ end++;}
-  
-  while (str[start] == ' ' || str[start] == '\t' || str[start] == '\n' || str[start] == '\r') {start ++;}
-   end--;
-   
-  while (end >= start && (str[end] == ' ' || str[end] == '\t' || str[end] == '\n' || str[end] == '\r')) { end--;}
-  
+  int st = 0;
+  int en = 0;
+  while (str[en]!='\0'){ en++;}
+  while (str[st] == ' ' || str[st] == '\t' || str[st] == '\n' || str[st] == '\r') {st++;}
+   en--;
+  while (en>= st && (str[en] == ' ' || str[en] == '\t' || str[en] == '\n' || str[en] == '\r')) { en--;}
   int i = 0;
-  while (start <=end) { str[i] = str[start]; i++; start++;} 
-  
+  while (st<=en) { str[i] = str[st]; i++; st++;} 
   str[i] = '\0';}
 
 void printHeader(const char* title) {
