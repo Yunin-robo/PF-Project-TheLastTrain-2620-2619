@@ -51,10 +51,6 @@ Always run from the project root, because the program uses relative paths (`data
 1. The building blueprint is shown, then the game asks for a starting floor and room (for example `1 1`).
 2. Type commands at the `>` prompt.
 
-### Commands
-
-| Command | Action |
-|---|---|
 | `move F R` | Move to floor F, room R |
 | `inspect` | Search the room (reveals contents, discovers clue digits) |
 | `collect X` | Pick up item with symbol X |
@@ -79,6 +75,12 @@ Invalid or rejected actions cost no Energy or Time.
 | Inspect, pickup, use | -1 | -1 |
 
 Energy Pack +25 Energy, Emergency Toolkit +15 Energy, Observation Token +15 Time (all capped at the maximum).
+
+
+### Commands
+
+| Command | Action |
+|---|---|
 
 ## Verifying Determinism
 
