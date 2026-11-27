@@ -51,20 +51,6 @@ Always run from the project root, because the program uses relative paths (`data
 1. The building blueprint is shown, then the game asks for a starting floor and room (for example `1 1`).
 2. Type commands at the `>` prompt.
 
-| `move F R` | Move to floor F, room R |
-| `inspect` | Search the room (reveals contents, discovers clue digits) |
-| `collect X` | Pick up item with symbol X |
-| `use X` | Use an inventory item (Medical Kit, Cat Carrier, Fuse) |
-| `unlock CODE` | Unlock the cabinet (in F5-R1) |
-| `board` | Prepare and board the train (in F5-R2) |
-| `map`, `status`, `objectives` | Display views (no cost) |
-| `connections` | To check the connections |
-| `save` / `load` | Save or load `out/savegame.txt` |
-| `building` | To load the whole building Map |
-| `quit` | End the mission (writes a defeat summary) |
-
-Invalid or rejected actions cost no Energy or Time.
-
 ### Costs
 
 | Action | Energy | Time |
@@ -81,6 +67,19 @@ Energy Pack +25 Energy, Emergency Toolkit +15 Energy, Observation Token +15 Time
 
 | Command | Action |
 |---|---|
+| `move F R` | Move to floor F, room R |
+| `inspect` | Search the room (reveals contents, discovers clue digits) |
+| `collect X` | Pick up item with symbol X |
+| `use X` | Use an inventory item (Medical Kit, Cat Carrier, Fuse) |
+| `unlock CODE` | Unlock the cabinet (in F5-R1) |
+| `board` | Prepare and board the train (in F5-R2) |
+| `map`, `status`, `objectives` | Display views (no cost) |
+| `connections` | To check the connections |
+| `save` / `load` | Save or load `out/savegame.txt` |
+| `building` | To load the whole building Map |
+| `quit` | End the mission (writes a defeat summary) |
+
+Invalid or rejected actions cost no Energy or Time.
 
 ## Verifying Determinism
 
