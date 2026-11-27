@@ -8,14 +8,14 @@ using namespace std;
 void renderDashboard(int playerFloor, int playerRoom, int energy, int time, int score,
                      const char inventory[MAX_INVENTORY_CAPACITY], int inventoryCount,
                      int emergencyTripsLeft){
-printHeader("Status");
+printHeader("STATUS");
 cout << "Location : F" << playerFloor << "-R" << playerRoom << endl;
 cout << "Energy   : " << energy << " / " << MAX_ENERGY << endl;
 cout << "Time     : " << time << " / " << MAX_TIME << endl;
 cout << "Score    : " << score << endl;
 cout << "Trips    : " << emergencyTripsLeft << endl;
 cout << "Inventory:  ";
-if (inventoryCount ==0){cout << "empty" << endl;}
+if (inventoryCount == 0){cout << "EMPTY" << endl;}
 else {
   for (int i = 0; i<inventoryCount; i++){
     cout << getEntityName(inventory[i]);
@@ -27,8 +27,8 @@ void renderRoomDetails(int floor, int room,
                        int entityCount){
 
 if (floor < 1 || floor > NUM_FLOORS || room < 1 || room > ROOMS_PER_FLOOR) { cout << "Invalid floor or room." << endl; return;}
-cout << "Room F" << floor << "-R" << room << endl;
-if (entityCount == 0){cout << "Nothing here." << endl;}
+cout << "ROOM F" << floor << "-R" << room << endl;
+if (entityCount == 0){cout << "NOTHING HERE!" << endl;}
 else { for (int i =0;i < entityCount;i++){
         char symbol = roomEntities[floor-1][room-1][i];
         cout << symbol << " " << getEntityName(symbol) << endl;}}}
