@@ -173,7 +173,7 @@ switch (itemSymbol){
     return true;
   
   case '^': cout << "🚫 The train key is used automatically during train preparation." << endl; return false;
-  default: cout << "🚫 Nothing to use that on here." << endl; return false;}}
+  default: cout << "🚫 Nothing to use here." << endl; return false;}}
   
 
 bool handleUnlockCabinetCommand(const char* code, int currentFloor, int currentRoom,
