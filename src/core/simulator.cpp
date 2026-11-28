@@ -30,13 +30,13 @@ bool handleMoveCommand(int targetFloor, int targetRoom,
 
   char conntype;
   if (!isDirectlyConnected(currentFloor, currentRoom, targetFloor, targetRoom, horizontalConn,conntype)){
-    cout << "[!] No direct route to F" << targetFloor << "-R" << targetRoom << "." << endl; return false;}
+    cout << "🚫 No direct route to F" << targetFloor << "-R" << targetRoom << "." << endl; return false;}
   
   if (!canTraverse(targetFloor, targetRoom, conntype, inventory, inventoryCount, emergencyTripsLeft,lift2Operational)){
     if (conntype == 'L'){
-      cout << "[!] Door is locked. You need the Master Key." << endl;}
+      cout << "🚫 Door is locked. You need the Master Key." << endl;}
     else if (conntype == '2'){
-      cout << "[!] Lift 2 is offline. You need a Lift Pass or emergency trips." << endl;}
+      cout << "🚫 Lift 2 is offline. You need a Lift Pass or emergency trips." << endl;}
     return false;}
   
   int engcost =0;
@@ -66,7 +66,7 @@ bool handleInspectCommand(int currentFloor, int currentRoom,
                           bool objectives[NUM_OBJECTIVES], int& score){
                           
   if (currentFloor < 1 || currentFloor > NUM_FLOORS || currentRoom < 1 || currentRoom > ROOMS_PER_FLOOR){
-    cout << "[!] Invalid floor or room." << endl;return false;}
+    cout << "🚫 Invalid floor or room." << endl;return false;}
   applyResourceDelta(energy, time, COST_INSPECT_ENERGY, COST_INSPECT_TIME);
   
   for (int i = 0;i<entityCount;i++){
@@ -74,15 +74,15 @@ bool handleInspectCommand(int currentFloor, int currentRoom,
     if (symb == '4' && !objectives[OBJ_CLUE_4]){
       objectives[OBJ_CLUE_4] = true;
       applyScoreDelta(score, SCORE_CLUE_FOUND);
-      cout << "[+] Clue 4 discovered!" << endl;}
+      cout << "🟢 Clue 4 discovered!" << endl;}
     else if (symb == '2' && !objectives[OBJ_CLUE_2]){
       objectives[OBJ_CLUE_2] = true;
       applyScoreDelta(score, SCORE_CLUE_FOUND);
-      cout << "[+] Clue 2 discovered!" << endl;}
+      cout << "🟢 Clue 2 discovered!" << endl;}
     else if (symb == '7' && !objectives[OBJ_CLUE_7]){
       objectives[OBJ_CLUE_7] = true;
       applyScoreDelta(score, SCORE_CLUE_FOUND);
-      cout << "[+] Clue 7 discovered!" << endl;}}
+      cout << "🟢 Clue 7 discovered!" << endl;}}
       
     return true;}
 
@@ -100,22 +100,22 @@ bool handleCollectCommand(char itemSymbol, int currentFloor, int currentRoom,
                           bool objectives[NUM_OBJECTIVES]){
                           
 if (currentFloor < 1 || currentFloor > NUM_FLOORS || currentRoom < 1 || currentRoom > ROOMS_PER_FLOOR){
-  cout << "[!] Invalid floor or room." << endl; return false;}
+  cout << "🚫 Invalid floor or room." << endl; return false;}
 
 int index = -1;
 for (int i = 0;i< entityCount; i++){
   if (roomEntities[currentFloor-1][currentRoom-1][i] == itemSymbol){index =i;break;}}
 
-if (index == -1){cout << "[!] Nothing like that here." << endl; return false;}
+if (index == -1){cout << "🚫 Nothing like that here." << endl; return false;}
 
 if (itemSymbol == '4' || itemSymbol == '2' || itemSymbol == '7' || itemSymbol == '~' || itemSymbol == '!' || itemSymbol == ';' || itemSymbol == '^'){
-  cout <<"[!] This entity cannot be collected." << endl; return false;}
+  cout <<"🚫 This entity cannot be collected." << endl; return false;}
 
 bool isStoredItem = false;
 if (itemSymbol == '<' || itemSymbol == '*' || itemSymbol == '(' || itemSymbol == '%' || itemSymbol == '$' || itemSymbol == '@') {
         isStoredItem = true;}
         
-if (isStoredItem && inventoryCount >= MAX_INVENTORY_CAPACITY){cout << "[!] Inventory is full." << endl; return false;}
+if (isStoredItem && inventoryCount >= MAX_INVENTORY_CAPACITY){cout << "🚫 Inventory is full." << endl; return false;}
 applyResourceDelta(energy, time, COST_ITEM_PICKUP_ENERGY, COST_ITEM_PICKUP_TIME);
 
 if (itemSymbol == '<') {
@@ -141,7 +141,7 @@ else if (itemSymbol == '\\') {
 else if (itemSymbol == '&') {
   applyResourceDelta(energy, time, 0, BONUS_OBSERVATION_TOKEN);}
 removeRoomEntity(roomEntities, currentFloor, currentRoom, entityCount, index);
-cout << "[+] Item collected successfully." << endl;
+cout << "🟢 Item collected successfully." << endl;
 return true;}
 
 bool handleUseCommand(char itemSymbol, int currentFloor, int currentRoom,
@@ -149,31 +149,31 @@ bool handleUseCommand(char itemSymbol, int currentFloor, int currentRoom,
                       char inventory[MAX_INVENTORY_CAPACITY], int& inventoryCount,
                       bool objectives[NUM_OBJECTIVES]){
 
-if (!hasItem(inventory, inventoryCount, itemSymbol)){cout << "[!] You do not have this item in your inventory." << endl;return false;}
+if (!hasItem(inventory, inventoryCount, itemSymbol)){cout << "🚫 You do not have this item in your inventory." << endl;return false;}
 
 switch (itemSymbol){
   case '%':
-    if (currentFloor != 4 || currentRoom != 1){cout << "[!] You cannot rescue the passenger here." << endl;return false;}
-    if (objectives[OBJ_PASSENGER_RESCUED]){cout << "[!] The passenger has already been rescued." << endl;return false;}
+    if (currentFloor != 4 || currentRoom != 1){cout << "🚫 You cannot rescue the passenger here." << endl;return false;}
+    if (objectives[OBJ_PASSENGER_RESCUED]){cout << "🚫 The passenger has already been rescued." << endl;return false;}
     applyResourceDelta(energy, time, COST_ITEM_USE_ENERGY, COST_ITEM_USE_TIME); objectives[OBJ_PASSENGER_RESCUED] = true;
     applyScoreDelta(score, SCORE_RESCUE_PASSENGER); removeItem(inventory, inventoryCount, itemSymbol);
-    cout << "[+] Passenger rescued successfully!" << endl; return true;
+    cout << "🟢 Passenger rescued successfully!" << endl; return true;
 
   case '@':
-    if (currentFloor != 3 || currentRoom != 3){cout << "[!] You cannot secure the cat here." << endl;return false;}
-    if (objectives[OBJ_CAT_SECURED]){cout << "[!] The cat has already been secured." << endl;return false;}
+    if (currentFloor != 3 || currentRoom != 3){cout << "🚫 You cannot secure the cat here." << endl;return false;}
+    if (objectives[OBJ_CAT_SECURED]){cout << "🚫 The cat has already been secured." << endl;return false;}
     applyResourceDelta(energy, time, COST_ITEM_USE_ENERGY, COST_ITEM_USE_TIME); objectives[OBJ_CAT_SECURED] = true;
     applyScoreDelta(score, SCORE_SECURE_CAT); removeItem(inventory, inventoryCount, itemSymbol);
-    cout << "[+] Cat secured successfully!" << endl; return true;
+    cout << "🟢 Cat secured successfully!" << endl; return true;
 
   case '*':
-    if (currentFloor != 3 || currentRoom != 4){cout << "[!] You cannot install the fuse control panel here." << endl;return false;}
+    if (currentFloor != 3 || currentRoom != 4){cout << "🚫 You cannot install the fuse control panel here." << endl;return false;}
     if (!installFuseControlPanel(inventory, inventoryCount, objectives, score)){return false;}
-    applyResourceDelta(energy, time, COST_ITEM_USE_ENERGY, COST_ITEM_USE_TIME); cout << "[+] Fuse control panel installed!" << endl;
+    applyResourceDelta(energy, time, COST_ITEM_USE_ENERGY, COST_ITEM_USE_TIME); cout << "🟢 Fuse control panel installed!" << endl;
     return true;
   
-  case '^': cout << "[!] The train key is used automatically during train preparation." << endl; return false;
-  default: cout << "[!] Nothing to use that on here." << endl; return false;}}
+  case '^': cout << "🚫 The train key is used automatically during train preparation." << endl; return false;
+  default: cout << "🚫 Nothing to use that on here." << endl; return false;}}
   
 
 bool handleUnlockCabinetCommand(const char* code, int currentFloor, int currentRoom,
@@ -181,9 +181,9 @@ bool handleUnlockCabinetCommand(const char* code, int currentFloor, int currentR
                                 char roomEntities[NUM_FLOORS][ROOMS_PER_FLOOR][MAX_ENTITIES_PER_ROOM],
                                 int& entityCount){
 
-if (currentFloor != 5 || currentRoom != 1){cout << "[!] There is no cabinet to unlock here." << endl;return false;}
-if (objectives[OBJ_CABINET_UNLOCKED]){cout << "[!] The cabinet is already unlocked." << endl;return false;}
-if (!verifyCabinetCode(code, objectives)){cout << "[!] Wrong code or missing clues." << endl;return false;}
+if (currentFloor != 5 || currentRoom != 1){cout << "🚫 There is no cabinet to unlock here." << endl;return false;}
+if (objectives[OBJ_CABINET_UNLOCKED]){cout << "🚫 The cabinet is already unlocked." << endl;return false;}
+if (!verifyCabinetCode(code, objectives)){cout << "🚫 Wrong code or missing clues." << endl;return false;}
 objectives[OBJ_CABINET_UNLOCKED] = true;
 score += SCORE_CABINET_UNLOCK;
 objectives[OBJ_TRAIN_KEY] = true;
@@ -195,8 +195,8 @@ for (int i = 0; i < entityCount; i++){
       roomEntities[currentFloor-1][currentRoom-1][j] = roomEntities[currentFloor-1][currentRoom-1][j + 1];}
     entityCount--;
     break;}}
-cout << "[+] Cabinet unlocked successfully!" << endl;
-cout << "[+] Train key obtained!" << endl;return true;}
+cout << "🟢 Cabinet unlocked successfully!" << endl;
+cout << "🟢 Train key obtained!" << endl;return true;}
 
 
 
@@ -219,9 +219,9 @@ void runSimulation(int& playerFloor, int& playerRoom,
       if (!getline(cin, line)){return;}
       istringstream in(line);
       int startFloor, startRoom;
-      if (!(in >> startFloor >> startRoom)){cout << "[!] Enter a valid floor and room." << endl;continue;}
+      if (!(in >> startFloor >> startRoom)){cout << "🚫 Enter a valid floor and room." << endl;continue;}
       if (!validateStartingRoom(startFloor, startRoom, horizontalConn)){
-        cout << "[!] Invalid starting room. Try again." << endl;
+        cout << "🚫 Invalid starting room. Try again." << endl;
         continue;}
       playerFloor = startFloor;
       playerRoom = startRoom;
@@ -279,7 +279,7 @@ while (running){
   if (command == "move"){
     int targetFloor, targetRoom;
     if (!(in >> targetFloor >> targetRoom)){
-      cout << "[!] Usage: move FLOOR ROOM" << endl; cout.rdbuf(oldBuf); message = captured.str(); continue;}
+      cout << "🚫 Usage: move FLOOR ROOM" << endl; cout.rdbuf(oldBuf); message = captured.str(); continue;}
     success = handleMoveCommand(targetFloor, targetRoom,playerFloor, playerRoom,energy, time,horizontalConn,inventory,inventoryCount,
                                 emergencyTripsLeft,objectives[OBJ_LIFT2_ACTIVE]);}
 
@@ -293,7 +293,7 @@ while (running){
   else if (command == "collect"){
     char itemSymbol;
     if (!(in >> itemSymbol)){
-      cout << "[!] Usage: collect ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str(); continue;}
+      cout << "🚫 Usage: collect ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str(); continue;}
     success = handleCollectCommand(itemSymbol, playerFloor, playerRoom, energy, time, score, roomEntities,entityCounts[playerFloor - 1][playerRoom - 1],
                                   inventory, inventoryCount, objectives);
     if (success){
@@ -305,14 +305,14 @@ while (running){
   else if (command == "use"){
     char itemSymbol;
     if (!(in >> itemSymbol)){
-      cout << "[!] Usage: use ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
+      cout << "🚫 Usage: use ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
     success = handleUseCommand(itemSymbol,playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives);}
 
   //UNLOCK CABINET
   else if (command == "unlock"){
     string code;
     if (!(in >> code)){
-      cout << "[!] Usage: unlock CODE" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
+      cout << "🚫 Usage: unlock CODE" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
     success = handleUnlockCabinetCommand(code.c_str(),playerFloor, playerRoom,objectives, score,roomEntities,entityCounts[playerFloor - 1][playerRoom - 1]);
     if (success){
       applyResourceDelta(energy, time,COST_ITEM_USE_ENERGY,COST_ITEM_USE_TIME);}}
@@ -321,18 +321,18 @@ while (running){
   //BOARD TRAIN
   else if (command == "board"){
     if (playerFloor != 5 || playerRoom != 2){
-      cout << "[!] There is no train here." << endl;}
+      cout << "🚫 There is no train here." << endl;}
     else if (!objectives[OBJ_TRAIN_KEY] || !objectives[OBJ_PASSENGER_RESCUED] || !objectives[OBJ_CAT_SECURED]){
-      cout << "[!] Complete all train preparation requirements first." << endl;}
+      cout << "🚫 Complete all train preparation requirements first." << endl;}
     else if (objectives[OBJ_TRAIN_PREPARED]) {
-      cout << "[!] The train is already prepared." << endl;}
+      cout << "🚫 The train is already prepared." << endl;}
     else {
       objectives[OBJ_TRAIN_PREPARED] = true;
       score += SCORE_PREPARE_TRAIN;
-      cout << "[+] Train prepared successfully!" << endl;
+      cout << "🟢 Train prepared successfully!" << endl;
       objectives[OBJ_MISSION_WON] = true;
       score += SCORE_MISSION_VICTORY;
-      cout << "[+] Mission completed! You won!" << endl;
+      cout << "🟢 Mission completed! You won!" << endl;
       success = true;}}
       
 
@@ -340,7 +340,7 @@ while (running){
   else if (command == "status"){renderDashboard(playerFloor, playerRoom, energy, time, score,inventory, inventoryCount, emergencyTripsLeft);}
 
   //OBJECTIVES
-  else if (command == "objectives"){cout << "[x] mean done and [ ] means not yet!"<< endl;renderObjectivesChecklist(objectives);}
+  else if (command == "objectives"){cout <<endl; renderObjectivesChecklist(objectives);}
   
   // Building Map
   else if (command == "building"){
@@ -365,24 +365,24 @@ while (running){
   else if (command == "save"){
     if (saveGameStateToFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
-        cout << "[+] Game saved successfully." << endl;}
-    else {cout << "[!] Could not save the game." << endl;}}
+        cout << "🟢 Game saved successfully." << endl;}
+    else {cout << "🚫 Could not save the game." << endl;}}
 
   //LOAD
   else if (command == "load"){
     if (loadGameStateFromFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
-        cout << "[+] Game loaded successfully." << endl;
+        cout << "🟢 Game loaded successfully." << endl;
         success = true;}
-    else {cout << "[!] Could not load the game." << endl;}}
+    else {cout << "🚫 Could not load the game." << endl;}}
 
   //QUIT
   else if (command == "quit"){
-    cout << "[!] Leaving the mission..." << endl;
+    cout << "🚫 Leaving the mission..." << endl;
             running = false;}
   
   //INVALID COMMAND
-  else {cout << "[!] Unknown command.  Check the commands list above." << endl;}
+  else {cout << "🚫 Unknown command.  Check the commands list above." << endl;}
   cout.rdbuf(oldBuf);
   message = captured.str();
 
@@ -405,8 +405,8 @@ while (running){
   else if (time <= 0) cout << "You ran out of Time." << endl;
   else cout << "You left the mission." << endl;}
   
-  if (objectives[OBJ_MISSION_WON]) {cout << "[+] Final Result: MISSION COMPLETED!" << endl;}
-  else {cout << "[!] Final Result: MISSION FAILED." << endl;}}
+  if (objectives[OBJ_MISSION_WON]) {cout << "🟢 Final Result: MISSION COMPLETED!" << endl;}
+  else {cout << "🚫 Final Result: MISSION FAILED." << endl;}}
 
 
 
