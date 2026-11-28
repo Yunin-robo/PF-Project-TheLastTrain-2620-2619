@@ -237,20 +237,19 @@ while (running){
   cout << "|" << setfill(' ') << setw(49) << "|" << endl;
   cout << "|           Available Commands:" << setfill(' ') << setw(19) << "|"<< endl;
   cout << "|" << setfill(' ') << setw(49) << "|" << endl;
-  cout << "| move F R       - Move to another room" << setfill(' ') << setw(11) << "|" << endl;
-  cout << "| inspect        - Inspect current room" << setfill(' ') << setw(11) << "|" << endl;
-  cout << "| collect X      - Collect an item" << setfill(' ') << setw(16) << "|" << endl;
-  cout << "| use X          - Use an inventory item" << setfill(' ') << setw(10) << "|" << endl;
-  cout << "| unlock CODE    - Unlock the cabinet" << setfill(' ') << setw(13) << "|" << endl;
-  cout << "| board          - Board the train" << setfill(' ') << setw(16) << "|" << endl;
-  cout << "| status         - Display player status" << setfill(' ') << setw(10) << "|" << endl;
-  cout << "| objectives     - Display objectives" << setfill(' ') << setw(13) << "|" << endl;
-  cout << "| connections    - to check the connections" << setfill(' ') << setw(7) << "|" << endl;
-  cout << "| building       - to load the whole building Map" << setfill(' ') << setw(1) << "|" << endl;
-  cout << "| save           - Save current game" << setfill(' ') << setw(14) << "|" << endl;
-  cout << "| load           - Load saved game" << setfill(' ') << setw(16) << "|" << endl;
-  cout << "| board          - Board Train from the Platfrom |" << endl;
-  cout << "| quit           - Exit the game" << setfill(' ') << setw(18) << "|" << endl;
+  cout << "| Move F R       - Move to another room" << setfill(' ') << setw(11) << "|" << endl;
+  cout << "| Inspect        - Inspect current room" << setfill(' ') << setw(11) << "|" << endl;
+  cout << "| Collect X      - Collect an item" << setfill(' ') << setw(16) << "|" << endl;
+  cout << "| Use X          - Use an inventory item" << setfill(' ') << setw(10) << "|" << endl;
+  cout << "| Unlock CODE    - Unlock the cabinet" << setfill(' ') << setw(13) << "|" << endl;
+  cout << "| Board          - Board the train" << setfill(' ') << setw(16) << "|" << endl;
+  cout << "| Status         - Display player status" << setfill(' ') << setw(10) << "|" << endl;
+  cout << "| Objectives     - Display objectives" << setfill(' ') << setw(13) << "|" << endl;
+  cout << "| Connections    - to check the connections" << setfill(' ') << setw(7) << "|" << endl;
+  cout << "| Building       - to load the whole building Map" << setfill(' ') << setw(1) << "|" << endl;
+  cout << "| Save           - Save current game" << setfill(' ') << setw(14) << "|" << endl;
+  cout << "| Load           - Load saved game" << setfill(' ') << setw(16) << "|" << endl;
+  cout << "| Quit           - Exit the game" << setfill(' ') << setw(18) << "|" << endl;
   cout << "|" << setfill(' ') << setw(49) << "|" << endl;
   cout << "+**********<-.-.-.-.-.-.-.-.-.-.-.-.-.>***********+" << endl;
   cout << endl;
@@ -276,7 +275,7 @@ while (running){
   ostringstream captured;
   streambuf* oldBuf = cout.rdbuf(captured.rdbuf());
   //MOVE
-  if (command == "move"){
+  if (command == "Move"){
     int targetFloor, targetRoom;
     if (!(in >> targetFloor >> targetRoom)){
       cout << "🚫 Usage: move FLOOR ROOM" << endl; cout.rdbuf(oldBuf); message = captured.str(); continue;}
@@ -285,12 +284,12 @@ while (running){
 
 
   //INSPECT
-  else if (command == "inspect"){
+  else if (command == "Inspect"){
     success = handleInspectCommand(playerFloor, playerRoom,energy, time,roomEntities,entityCounts[playerFloor - 1][playerRoom - 1],objectives, score);}
 
 
   //COLLECT
-  else if (command == "collect"){
+  else if (command == "Collect"){
     char itemSymbol;
     if (!(in >> itemSymbol)){
       cout << "🚫 Usage: collect ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str(); continue;}
@@ -302,14 +301,14 @@ while (running){
 
 
   //USE
-  else if (command == "use"){
+  else if (command == "Use"){
     char itemSymbol;
     if (!(in >> itemSymbol)){
       cout << "🚫 Usage: use ITEM" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
     success = handleUseCommand(itemSymbol,playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives);}
 
   //UNLOCK CABINET
-  else if (command == "unlock"){
+  else if (command == "Unlock"){
     string code;
     if (!(in >> code)){
       cout << "🚫 Usage: unlock CODE" << endl;cout.rdbuf(oldBuf); message = captured.str();continue;}
@@ -319,7 +318,7 @@ while (running){
 
 
   //BOARD TRAIN
-  else if (command == "board"){
+  else if (command == "Board"){
     if (playerFloor != 5 || playerRoom != 2){
       cout << "🚫 There is no train here." << endl;}
     else if (!objectives[OBJ_TRAIN_KEY] || !objectives[OBJ_PASSENGER_RESCUED] || !objectives[OBJ_CAT_SECURED]){
@@ -337,13 +336,13 @@ while (running){
       
 
   //STATUS
-  else if (command == "status"){renderDashboard(playerFloor, playerRoom, energy, time, score,inventory, inventoryCount, emergencyTripsLeft);}
+  else if (command == "Status"){renderDashboard(playerFloor, playerRoom, energy, time, score,inventory, inventoryCount, emergencyTripsLeft);}
 
   //OBJECTIVES
-  else if (command == "objectives"){cout <<endl; renderObjectivesChecklist(objectives);}
+  else if (command == "Objectives"){cout <<endl; renderObjectivesChecklist(objectives);}
   
   // Building Map
-  else if (command == "building"){
+  else if (command == "Building"){
     ifstream mapView("data/building.txt");
     string mapLine;
     while (getline(mapView, mapLine)) {cout << mapLine << "\n";}
@@ -351,7 +350,7 @@ while (running){
     cout << endl;}
     
   //CONNECTION
-  else if (command == "connections"){
+  else if (command == "Connections"){
     cout << "Connections in the map: " << endl;
     cout << endl;
     for (int f = NUM_FLOORS; f >= 1; f--) {
@@ -362,14 +361,14 @@ while (running){
     cout << endl;}
 
   //SAVE
-  else if (command == "save"){
+  else if (command == "Save"){
     if (saveGameStateToFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "🟢 Game saved successfully." << endl;}
     else {cout << "🚫 Could not save the game." << endl;}}
 
   //LOAD
-  else if (command == "load"){
+  else if (command == "Load"){
     if (loadGameStateFromFile("./out/savegame.txt",playerFloor, playerRoom,energy, time, score,inventory, inventoryCount,objectives, emergencyTripsLeft,
                             roomEntities, entityCounts)){
         cout << "🟢 Game loaded successfully." << endl;
@@ -377,7 +376,7 @@ while (running){
     else {cout << "🚫 Could not load the game." << endl;}}
 
   //QUIT
-  else if (command == "quit"){
+  else if (command == "Quit"){
     cout << "🚫 Leaving the mission..." << endl;
             running = false;}
   
