@@ -25,8 +25,8 @@ include/    header files (config.h, state.h, level.h, simulator.h, physics.h,
             switches.h, logger.h, util.h, viewer_iface.h)
 src/core/   source files (main_core.cpp, level.cpp, simulator.cpp, physics.cpp,
             switches.cpp, logger.cpp, util.cpp, viewer_iface_core.cpp)
-data/       building.txt, initial-state.txt, test command files
-out/        savegame.txt, game_summary.txt (sample completed run)
+data/       building.txt, initial-state.txt, commands.txt, defeat.txt, invalid.txt, save_load.txt, wall_lift.txt, win.txt
+out/        savegame.txt, game_summary.txt (sample completed run), output_win.txt
 docs/       Project_Diagram.jpg, Flowchart.png, ConsoleUI.png
 ```
 
