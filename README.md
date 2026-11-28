@@ -15,7 +15,8 @@ THE LAST TRAIN is a deterministic, text-based rescue game written in C++ (no cla
 - install the Fuse at the Control Panel and collect the Lift Pass to restore Lift 2,
 - prepare and board the train in F5-R2,
 
-all before Energy or Time reaches 0. Maximum score is 520.
+All before Energy or Time reaches 0. 
+Maximum score is 520.
 
 ## Project Structure
 
