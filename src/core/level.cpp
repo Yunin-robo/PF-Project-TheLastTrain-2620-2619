@@ -136,9 +136,6 @@ bool loadBuildingMap(const char* filename,
           if (entityCounts[floor-1][i] >= MAX_ENTITIES_PER_ROOM){
             file.close(); return false;}
           
-          roomEntities[floor-1][i][entityCounts[floor-1][i]] = entityLine[j];
-          entityCounts[floor-1][i]++;}}}
-      floorParse++;
       if (floorParse == NUM_FLOORS){break;}}
       file.close();
       return floorParse == NUM_FLOORS;}
