@@ -148,17 +148,17 @@ void writeGameSummaryReport(const char* filename,
     file << "Remaining Energy: " << remainingEnergy << endl;
     file << "Remaining Time: " << remainingTime << endl;
 
-    file << endl << "OBJECTIVES CHECKLIST" << endl;
+    file << endl << "OBJECTIVES CHECKLIST:" << endl;
+    file << endl;
 
     const char* names[] = {"Master Key","Clue 4","Clue 2","Clue 7","Cabinet","Train Key","Fuse","Lift Pass","Passenger","Cat","Train Prepared"};
 
     int obj[] = {OBJ_MASTER_KEY,OBJ_CLUE_4,OBJ_CLUE_2,OBJ_CLUE_7,OBJ_CABINET_UNLOCKED,OBJ_TRAIN_KEY,OBJ_FUSE_INSTALLED,OBJ_LIFT_PASS,OBJ_PASSENGER_RESCUED,OBJ_CAT_SECURED,OBJ_TRAIN_PREPARED};
 
     for (int i = 0; i < 11; i++) {
-        file << "[";
-        if (objectives[obj[i]]) file << "X";
-        else file << " ";
-        file << "] " << names[i] << endl;}
+        if (objectives[obj[i]]) file << "✅ ";
+        else file << "❌ ";
+        file << names[i] << endl;}
   file.close();}
 
 // File persistence for savegame.txt and game_summary.txt using primitive variables
